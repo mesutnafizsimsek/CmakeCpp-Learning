@@ -1,14 +1,25 @@
 #include <iostream>
-#include "Adder/add.h"
-#include <GLFW/glfw3.h>
 
+#include <GLFW/glfw3.h>
+#include <HighlighterConfig.h>
+
+#ifdef USE_ADDER
+    #include "Adder/add.h"
+#endif
 
 using namespace std;
 
-int main()
+int main(int argc, char argv[])
 {
     cout << "Hello World!" << endl;
-    cout << add(12.0f, 2.33f) << endl;
+
+    #ifdef USE_ADDER
+        cout << add(12.0f, 2.33f) << endl;
+    #else
+        cout << "Adder not used" << endl;
+    #endif
+    
+    cout << argv[0] << "VERSION "<< Highlighter_VERSION_MAJOR << "." << Highlighter_VERSION_MINOR << endl;
 
     GLFWwindow* window;
 

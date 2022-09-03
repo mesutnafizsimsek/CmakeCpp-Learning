@@ -19,7 +19,7 @@ command, this will create the executable using your specified cpp file in your C
 
 ./ExeName will run the executable
 
-# ADDING ANOTHER FILE 
+# ADDING CPP FILE 
 
 To add another file, lets say we have only one function in add.cpp and use it in our main.cpp file 
 write the function definition into add.cpp and add the function declaration in main.cpp 
@@ -29,7 +29,7 @@ But you need to add this cpp file to the cmakelist while you declare executable
 
 add_executable(${PROJECT_NAME} main.cpp add.cpp)
 
-# ADDING WITH HEADER FİLE 
+# ADDING CPP WITH HEADER FILE 
 
 As we write all of our libraries with Headers in pulpo, its better to know how to add header files 
 For this, we should introduce our method into cmakelist 
@@ -81,3 +81,49 @@ cmake -DGLFW_BUILD_DOCS=OFF -S . -B out/build/
 
 here we set GLFW_BUILD_DOCS to OFF 
 
+# Versioning 
+
+To version your program, you should add the VERSION flag to project() func of cmake.
+
+Also this command should be added 
+
+configure_file(HighlighterConfig.h.in HighlighterConfig.h)
+
+target_include_directories(${PROJECT_NAME} 
+    PUBLIC ${PROJECT_BINARY_DIR}
+)
+
+Then, we will create HighlighterConfig.h.in file and write our macro in it.
+
+# Options  MORE 
+
+If we want to include any library optionally, we will use of #ifndef #else #endif preprocessors on code 
+Also we need to create required CMakelists settings. 
+
+We can use 
+list(INCLUDE <listname> <variable>)
+for required imports
+
+# Installs
+
+Yet we were installing our software manually with configure-build-run pipeline,
+however, if we wan our software installable like other programs we can do it with Cmake 
+
+Add 
+install(TARGETS add DESTINATION lib)
+install(FILES add.h DESTINATION include)
+
+to adder lib makes this work for adder library
+
+And 
+
+install(TARGETS ${PROJECT_NAME} DESTINATION bin)
+install(FILES "${PROJECT_NAME}/HighlighterConfig.h" DESTINATION include)
+
+in main CMakeLists 
+
+Then, we should create another .sh file which has this code 
+cd out/build ; make install
+
+This will make our programm accessable on the computer from command line like other
+programs in the device.

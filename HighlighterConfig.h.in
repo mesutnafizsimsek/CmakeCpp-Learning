@@ -1,0 +1,10 @@
+#define Highlighter_VERSION_MAJOR @Highlighter_VERSION_MAJOR@
+#define Highlighter_VERSION_MINOR @Highlighter_VERSION_MINOR@
+
+
+
+#ifdef USE_ADDER
+    #include "Adder/add.h"
+#endif
+
+#cmakedefine USE_ADDER
