@@ -1,3 +1,4 @@
+# c++ gitignore 
 # Prerequisites
 *.d
 
@@ -31,7 +32,7 @@
 *.out
 *.app
 
-# CMAKE
+# CMAKE gitignore
 CMakeLists.txt.user
 CMakeCache.txt
 CMakeFiles
@@ -50,7 +51,7 @@ out/build
 
 [Bb][Uu][Ii][Ll][Dd]/
 
-#vscode 
+#vscode gitignore 
 .vscode/*
 !.vscode/settings.json
 !.vscode/tasks.json

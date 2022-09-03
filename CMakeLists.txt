@@ -8,6 +8,15 @@ configure_file(HighlighterConfig.h.in HighlighterConfig.h)
 add_executable(${PROJECT_NAME} main.cpp)
 
 
+find_library(myGlewLib glew NAMES glew2 GLEW GLEW2)
+
+if (${myGlewLib} STREQUAL "myGlewLib-NOTFOUND")
+    message(FATAL_ERROR "Glew library not found")
+else()
+    message(STATUS "Glew library found")
+    list(APPEND EXTRA_LINKS myGlewLib)
+endif()
+
 target_include_directories(${PROJECT_NAME} 
     PUBLIC ${PROJECT_BINARY_DIR}
 )
@@ -34,7 +43,8 @@ PUBLIC external/glfw/src
 ${EXTRA_LIB_DIRS}
 )
 
-target_link_libraries(${PROJECT_NAME} ${EXTRA_LINKS} glfw)
+list(APPEND EXTRA_LINKS glfw)
+target_link_libraries(${PROJECT_NAME} ${EXTRA_LINKS})
 
 
 

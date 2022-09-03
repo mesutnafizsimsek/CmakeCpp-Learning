@@ -3,6 +3,10 @@
 #include <GLFW/glfw3.h>
 #include <HighlighterConfig.h>
 
+#include <GL/glew.h>
+
+
+
 #ifdef USE_ADDER
     #include "Adder/add.h"
 #endif

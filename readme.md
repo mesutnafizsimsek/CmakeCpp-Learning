@@ -127,3 +127,13 @@ cd out/build ; make install
 
 This will make our programm accessable on the computer from command line like other
 programs in the device.
+
+
+# find_library / findpackage
+find_library in cmake finds libraries from our usr/local manually
+we should have installed the library instead of submodule installation type. 
+
+find_library(myGlewLib glew NAMES glew2 GLEW GLEW2)
+
+This command searches local for glew, glew2, GLEW and GLEW2 and link them to variable myGlewLib 
+to use it later for checking if the library is found correctly.
